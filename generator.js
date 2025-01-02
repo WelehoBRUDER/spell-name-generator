@@ -76,7 +76,7 @@ async function createSpellDescription() {
 			{
 				parts: [
 					{
-						text: `Create a 5th edition DND spell description based on this title: "${spellTitle.textContent}"\nWrite the response inside a HTML div element; do not show title of the spell; Add styles to each element; Imitate the official 5e spell block template; cantrips can't be upcasted`,
+						text: `Create a 5th edition DND spell description based on this title: "${spellTitle.textContent}"\nWrite the response inside a HTML div element; Add styles to each element; Imitate the official 5e spell block template; no cantrips;`,
 					},
 				],
 			},
@@ -101,7 +101,7 @@ function createSpellBlockImage() {
 	const div = desc.querySelector("div");
 	html2canvas(div, { scale: 2 }).then((canvas) => {
 		const link = document.createElement("a");
-		link.download = "capture.png"; // Set filename
+		link.download = `${spellTitle.textContent} (Spell Generator).png`; // Set filename
 		link.href = canvas.toDataURL("image/png"); // Convert canvas to PNG URL
 		link.click(); // Trigger download
 	});
