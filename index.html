@@ -6,12 +6,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Spell name generator</title>
   <script src="generator.js" defer></script>
+
+  <style>
+    .desc {
+      max-width: 50%;
+    }
+  </style>
 </head>
 
 <body>
   <center>
     <h1 class="name">[SPELL NAME]</h1>
+    <div class="desc"></div>
     <button class="generate">GENERATE!</button>
+    <button onclick="createSpellDescription()" class="desc-btn">DESCRIBE!</button>
   </center>
 </body>
 
