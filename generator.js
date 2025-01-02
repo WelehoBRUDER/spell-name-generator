@@ -3,6 +3,7 @@ generateButton.addEventListener("click", () => {
 	generateSpell();
 });
 const descBtn = document.querySelector(".desc-btn");
+const downloadBtn = document.querySelector(".download");
 const spellTitle = document.querySelector("h1");
 const url = "https://fantasyname.lukewh.com";
 const desc = document.querySelector(".desc");
@@ -16,6 +17,7 @@ async function getApiKey() {
 	} catch {
 		console.warn("No API key! You won't be able to use describe");
 		descBtn.disabled = true;
+		downloadBtn.disabled = true;
 	}
 }
 
@@ -74,7 +76,7 @@ async function createSpellDescription() {
 			{
 				parts: [
 					{
-						text: `Create a 5th edition DND spell description based on this title: "${spellTitle.textContent}"\nWrite the response in HTML format; do not show title of the spell;`,
+						text: `Create a 5th edition DND spell description based on this title: "${spellTitle.textContent}"\nWrite the response inside a HTML div element; do not show title of the spell; Add styles to each element; Imitate the official 5e spell block template; cantrips can't be upcasted`,
 					},
 				],
 			},
@@ -91,5 +93,16 @@ async function createSpellDescription() {
 	const resData = await response.json();
 	let message = resData.candidates[0].content.parts[0].text;
 	message = message.split("```html")[1];
+	message = message.split("```")[0];
 	desc.innerHTML = message;
+}
+
+function createSpellBlockImage() {
+	const div = desc.querySelector("div");
+	html2canvas(div, { scale: 2 }).then((canvas) => {
+		const link = document.createElement("a");
+		link.download = "capture.png"; // Set filename
+		link.href = canvas.toDataURL("image/png"); // Convert canvas to PNG URL
+		link.click(); // Trigger download
+	});
 }

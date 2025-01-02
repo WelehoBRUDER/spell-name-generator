@@ -7,3 +7,4 @@ If you want to use describe, add your own Google Gemini API key in a file named 
   "API-KEY": "YOUR-API-KEY-GOES-HERE"
 }
 ```
+Block can be download via html2canvas
